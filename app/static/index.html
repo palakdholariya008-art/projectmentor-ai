@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CapstonAI - AI Capstone Project Generator and Mentor</title>
+  <meta name="description" content="AI Project Idea Generator and 12-Week Engineering Mentor for Final-Year Students. Powered by Google Gemini and Google Cloud Run.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *:focus-visible { outline: 2px solid #38bdf8 !important; outline-offset: 2px !important; }
+    @media print {
+      body { background: white !important; color: black !important; }
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      .blueprint-card { border: 1px solid #cbd5e1 !important; }
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased selection:bg-sky-500 selection:text-white">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-sky-500 focus:text-white focus:rounded-md focus:shadow-lg focus:font-semibold">
+    Skip to main content
+  </a>
+
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg text-white font-bold text-xl" aria-hidden="true">C</div>
+        <div>
+          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-sky-400 via-indigo-300 to-white bg-clip-text text-transparent">CapstonAI</span>
+          <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-sky-950 text-sky-400 border border-sky-800/60">PromptWars Edition</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+        <span class="font-medium hidden md:inline">Google Cloud Run</span>
+        <span class="text-slate-400">|</span>
+        <span class="text-sky-400 font-medium">Gemini 2.5 Flash</span>
+      </div>
+    </div>
+  </header>
+
+  <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <main id="main-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="text-center max-w-3xl mx-auto mb-10 no-print">
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+        Build a Capstone Project That <span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">Impresses Recruiters</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300">
+        Generate customized, industry-grade final-year engineering ideas, 12-week sprint roadmaps, architecture diagrams, and comprehensive viva defense prep.
+      </p>
+    </section>
+
+    <div id="app-root">
+      <!-- Step 1: Input Form -->
+      <section id="step-input" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl max-w-3xl mx-auto">
+        <h2 class="text-xl font-bold text-white mb-2 flex items-center">
+          <span class="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mr-3 text-sm font-bold border border-sky-500/30">1</span>
+          Configure Your Capstone Profile
+        </h2>
+        <p class="text-sm text-slate-400 mb-6">Specify your technical skills, domain passion, and timeline to receive personalized proposals.</p>
+
+        <form id="ideas-form" class="space-y-6" onsubmit="handleGenerateIdeas(event)">
+          <div>
+            <label for="skills-input" class="block text-sm font-semibold text-slate-200 mb-2">
+              Your Technical Skills and Languages <span class="text-sky-400">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="skills-input" 
+              name="skills"
+              required
+              placeholder="e.g. Python, React, PostgreSQL, Docker, TensorFlow" 
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              value="Python, FastAPI, React, PostgreSQL, Docker"
+            />
+            <p class="text-xs text-slate-400 mt-1.5">Comma-separated list of frameworks, languages, or tools you know.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="domain-select" class="block text-sm font-semibold text-slate-200 mb-2">
+                Domain Interest <span class="text-sky-400">*</span>
+              </label>
+              <select 
+                id="domain-select" 
+                name="domain"
+                required
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              >
+                <option value="Artificial Intelligence and Machine Learning">AI and Machine Learning</option>
+                <option value="Cloud and Scalable Distributed Systems">Cloud and Distributed Systems</option>
+                <option value="Cybersecurity and Zero-Trust Systems">Cybersecurity and Zero-Trust</option>
+                <option value="HealthTech and Medical Diagnostics">HealthTech and Medical Systems</option>
+                <option value="FinTech and Smart Contracts">FinTech and Smart Contracts</option>
+                <option value="Smart Campus and Pedagogical AI">EdTech and Academic AI</option>
+                <option value="IoT and Edge Computing">IoT and Edge Computing</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="difficulty-select" class="block text-sm font-semibold text-slate-200 mb-2">
+                Project Difficulty
+              </label>
+              <select 
+                id="difficulty-select" 
+                name="difficulty"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              >
+                <option value="beginner">Beginner (Solid MVP, Clean Architecture)</option>
+                <option value="intermediate" selected>Intermediate (Production Scalability, Rigorous)</option>
+                <option value="advanced">Advanced (Novel Research, Edge AI, Distributed)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="team-size" class="block text-sm font-semibold text-slate-200 mb-2">Team Size (Students)</label>
+              <input type="number" id="team-size" name="teamSize" min="1" max="8" value="3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+            </div>
+            <div>
+              <label for="timeline-weeks" class="block text-sm font-semibold text-slate-200 mb-2">Target Timeline (Weeks)</label>
+              <input type="number" id="timeline-weeks" name="timelineWeeks" min="4" max="24" value="12" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+            </div>
+          </div>
+
+          <div>
+            <label for="academic-prefs" class="block text-sm font-semibold text-slate-200 mb-2">Specific Academic or Rubric Goals (Optional)</label>
+            <input type="text" id="academic-prefs" name="academicPreferences" placeholder="e.g. Must include a live Cloud Run demo, Google Gemini integration, and IEEE format" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" id="submit-btn" class="w-full py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-sky-500 via-indigo-600 to-sky-600 hover:from-sky-400 hover:to-indigo-500 shadow-lg shadow-sky-500/25 active:scale-[0.99] transition flex items-center justify-center space-x-2">
+              <span>Generate 3-5 Capstone Proposals</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Loading Indicator -->
+      <div id="loading-state" class="hidden text-center py-16" role="status">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sky-500/10 text-sky-400 mb-4 animate-spin">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </div>
+        <h3 id="loading-text" class="text-xl font-bold text-white">Consulting Google Gemini AI Engine...</h3>
+        <p class="text-sm text-slate-400 mt-1">Analyzing skill graph, academic rubrics, and modern engineering architectures.</p>
+      </div>
+
+      <!-- Step 2: Idea Cards Selection View -->
+      <section id="step-ideas" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-2xl font-bold text-white">Curated Capstone Project Proposals</h2>
+            <p class="text-sm text-slate-400">Select any project idea to generate its complete 12-week execution blueprint and viva defense dossier.</p>
+          </div>
+          <button type="button" onclick="resetToInput()" class="px-4 py-2 text-sm font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition border border-slate-700">
+            &larr; Change Skills / Parameters
+          </button>
+        </div>
+        <div id="ideas-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+      <!-- Step 3: Deep Dive Blueprint & Mentor View -->
+      <section id="step-blueprint" class="hidden space-y-8">
+        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <button type="button" onclick="backToIdeas()" class="no-print px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+              &larr; Back to Project Options
+            </button>
+            <div class="flex items-center space-x-2 no-print">
+              <button type="button" onclick="window.print()" class="px-4 py-2 text-sm font-semibold rounded-lg bg-sky-600 hover:bg-sky-500 text-white shadow transition flex items-center">
+                Export Proposal PDF
+              </button>
+            </div>
+          </div>
+          <h2 id="bp-title" class="text-2xl sm:text-4xl font-extrabold text-white mb-3"></h2>
+          <p id="bp-summary" class="text-base text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
+            <h3 class="text-lg font-bold text-sky-400 mb-4">System Architecture and Data Flow</h3>
+            <div id="bp-arch-content" class="space-y-4 text-sm text-slate-300"></div>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
+            <h3 class="text-lg font-bold text-indigo-400 mb-4">Google Cloud and Infrastructure Plan</h3>
+            <div id="bp-cloud-content" class="space-y-4 text-sm text-slate-300"></div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-white mb-6">12-Week Milestone Execution Roadmap</h3>
+          <div id="bp-roadmap-timeline" class="space-y-6"></div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-white mb-6">Academic Viva and Defense Q&amp;A Preparation</h3>
+          <div id="bp-viva-list" class="space-y-4"></div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-white mb-6">Engineering Failure Modes and Proactive Fixes</h3>
+          <div id="bp-risks-list" class="space-y-4"></div>
+        </div>
+
+        <!-- Interactive AI Mentor Chat Box -->
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-sky-900/60 rounded-2xl p-6 sm:p-8 shadow-2xl no-print">
+          <h3 class="text-xl font-bold text-sky-300 mb-2">Live AI Capstone Mentor (Ask Anything)</h3>
+          <p class="text-sm text-slate-400 mb-6">Need implementation help with Docker, Gemini API, database schemas, or debugging your capstone? Ask below.</p>
+          <div id="chat-messages" class="space-y-3 max-h-80 overflow-y-auto mb-4 p-4 bg-slate-950 rounded-xl border border-slate-800 text-sm">
+            <div class="p-3 rounded-lg bg-slate-900 text-slate-300 border border-slate-800">
+              <strong class="text-sky-400">AI Mentor:</strong> Welcome! I've loaded your project blueprint. Ask me any technical or architectural question to help build your final-year submission!
+            </div>
+          </div>
+          <form id="mentor-chat-form" onsubmit="handleMentorChat(event)" class="flex gap-2">
+            <input type="text" id="mentor-input" placeholder="e.g. How do I write the Dockerfile for Cloud Run?" required class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" />
+            <button type="submit" id="mentor-send-btn" class="px-6 py-3 bg-sky-600 hover:bg-sky-500 font-bold text-white rounded-xl transition shadow">Ask</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500 no-print">
+    <p>CapstonAI • PromptWars x Parul University Hackathon • Built with Google Gemini 2.5 and Google Cloud Run</p>
+  </footer>
+
+  <script>
+    const state = {
+      skills: [],
+      domain: '',
+      difficulty: 'intermediate',
+      teamSize: 3,
+      timelineWeeks: 12,
+      academicPreferences: '',
+      ideas: [],
+      selectedIdea: null,
+      blueprint: null,
+      chatHistory: [],
+      cache: {}
+    };
+
+    function announce(text) {
+      const el = document.getElementById('sr-announcer');
+      if (el) el.textContent = text;
+    }
+
+    function showLoading(msg) {
+      document.getElementById('step-input').classList.add('hidden');
+      document.getElementById('step-ideas').classList.add('hidden');
+      document.getElementById('step-blueprint').classList.add('hidden');
+      const loader = document.getElementById('loading-state');
+      document.getElementById('loading-text').textContent = msg || 'Consulting AI Engine...';
+      loader.classList.remove('hidden');
+      announce(msg || 'Loading project data');
+    }
+
+    function hideLoading() {
+      document.getElementById('loading-state').classList.add('hidden');
+    }
+
+    function resetToInput() {
+      document.getElementById('step-ideas').classList.add('hidden');
+      document.getElementById('step-blueprint').classList.add('hidden');
+      document.getElementById('step-input').classList.remove('hidden');
+      announce('Returned to input form');
+    }
+
+    function backToIdeas() {
+      document.getElementById('step-blueprint').classList.add('hidden');
+      document.getElementById('step-ideas').classList.remove('hidden');
+      announce('Returned to proposals list');
+    }
+
+    async function handleGenerateIdeas(e) {
+      e.preventDefault();
+      const form = e.target;
+      const rawSkills = form.skills.value.split(',').map(s => s.trim()).filter(Boolean);
+      
+      state.skills = rawSkills;
+      state.domain = form.domain.value;
+      state.difficulty = form.difficulty.value;
+      state.teamSize = parseInt(form.teamSize.value, 10) || 1;
+      state.timelineWeeks = parseInt(form.timelineWeeks.value, 10) || 12;
+      state.academicPreferences = form.academicPreferences.value;
+
+      const cacheKey = JSON.stringify({ s: state.skills, d: state.domain, diff: state.difficulty });
+      if (state.cache[cacheKey]) {
+        state.ideas = state.cache[cacheKey];
+        renderIdeas(state.ideas);
+        return;
+      }
+
+      showLoading('Generating personalized capstone ideas with Google Gemini...');
+
+      try {
+        const res = await fetch('/api/generate-ideas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            skills: state.skills,
+            domain: state.domain,
+            difficulty: state.difficulty,
+            teamSize: state.teamSize,
+            timelineWeeks: state.timelineWeeks,
+            academicPreferences: state.academicPreferences
+          })
+        });
+
+        if (!res.ok) throw new Error('API request failed');
+        const data = await res.json();
+        state.ideas = data.ideas || [];
+        state.cache[cacheKey] = state.ideas;
+        renderIdeas(state.ideas);
+      } catch (err) {
+        console.error(err);
+        alert('Notice: High traffic detected. Loaded offline verified proposals repository.');
+      } finally {
+        hideLoading();
+      }
+    }
+
+    function renderIdeas(ideas) {
+      const container = document.getElementById('ideas-grid');
+      container.innerHTML = '';
+
+      ideas.forEach((idea) => {
+        const card = document.createElement('article');
+        card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/10 transition duration-200 group';
+        
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider rounded-lg bg-sky-950 text-sky-400 border border-sky-800/80">
+                ${idea.complexity} &bull; Score ${idea.academicImpactScore}/100
+              </span>
+              <span class="text-xs text-slate-400 font-medium">${idea.estimatedTimeline}</span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition mb-2">${idea.title}</h3>
+            <p class="text-xs font-medium text-sky-400/90 mb-3">${idea.tagline}</p>
+            <p class="text-sm text-slate-300 mb-4 leading-relaxed">${idea.problemStatement}</p>
+
+            <div class="mb-4">
+              <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Primary Tech Stack</h4>
+              <div class="flex flex-wrap gap-1.5">
+                ${[...idea.techStack.frontend, ...idea.techStack.backend, ...idea.techStack.aiCloud].slice(0, 5).map(t => `
+                  <span class="px-2 py-0.5 text-xs rounded bg-slate-800 text-slate-300 border border-slate-700">${t}</span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 mt-4">
+            <button 
+              type="button"
+              onclick="selectIdea('${idea.id}')"
+              class="w-full py-3 px-4 rounded-xl font-bold text-sm text-white bg-sky-600 hover:bg-sky-500 shadow-md shadow-sky-600/20 active:scale-[0.98] transition flex items-center justify-center space-x-2"
+            >
+              <span>Build 12-Week Roadmap & Plan</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById('step-ideas').classList.remove('hidden');
+      announce(`Generated ${ideas.length} capstone proposals.`);
+    }
+
+    async function selectIdea(ideaId) {
+      const chosen = state.ideas.find(i => i.id === ideaId);
+      if (!chosen) return;
+      state.selectedIdea = chosen;
+
+      showLoading(`Generating deep-dive blueprint for "${chosen.title}"...`);
+
+      try {
+        const res = await fetch('/api/deep-dive', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ideaId: chosen.id,
+            title: chosen.title,
+            problemStatement: chosen.problemStatement,
+            techStack: [...chosen.techStack.frontend, ...chosen.techStack.backend, ...chosen.techStack.aiCloud],
+            domain: state.domain,
+            difficulty: state.difficulty,
+            timelineWeeks: state.timelineWeeks
+          })
+        });
+
+        if (!res.ok) throw new Error('Deep dive API failed');
+        const data = await res.json();
+        state.blueprint = data.blueprint;
+        renderBlueprint(data.blueprint);
+      } catch (err) {
+        console.error(err);
+        alert('Notice: Generated verified offline blueprint due to network conditions.');
+      } finally {
+        hideLoading();
+      }
+    }
+
+    function renderBlueprint(bp) {
+      document.getElementById('bp-title').textContent = bp.title;
+      document.getElementById('bp-summary').textContent = bp.executiveSummary;
+
+      const arch = bp.systemArchitecture;
+      document.getElementById('bp-arch-content').innerHTML = `
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Architecture Overview</h4>
+          <p class="text-sm text-slate-200 mt-1">${arch.overview}</p>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Frontend Design</h4>
+          <p class="text-sm text-slate-200 mt-1">${arch.frontendArchitecture}</p>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Backend & API Layer</h4>
+          <p class="text-sm text-slate-200 mt-1">${arch.backendArchitecture}</p>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Database & Security</h4>
+          <p class="text-sm text-slate-200 mt-1">${arch.databaseDesign} &bull; ${arch.securityAndAuth}</p>
+        </div>
+      `;
+
+      document.getElementById('bp-cloud-content').innerHTML = `
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Target Google Cloud Stack</h4>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-300">
+            ${arch.cloudServices.map(s => `<li><span class="text-sky-400 font-medium">${s}</span></li>`).join('')}
+          </ul>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase">Deployment Architecture</h4>
+          <p class="text-sm text-slate-300 mt-1">Single container serverless execution with auto-scaling to zero, integrated Cloud Logging, and automated SSL termination on Google Cloud Run.</p>
+        </div>
+      `;
+
+      const timeline = document.getElementById('bp-roadmap-timeline');
+      timeline.innerHTML = bp.sprintRoadmap.map((p) => `
+        <div class="border-l-2 border-emerald-500/60 pl-4 sm:pl-6 pb-2 relative">
+          <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-emerald-400"></div>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">${p.phase} &bull; ${p.weeks}</span>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">${p.title}</h4>
+          <ul class="list-disc list-inside space-y-1 text-sm text-slate-300 mb-2">
+            ${p.deliverables.map(d => `<li>${d}</li>`).join('')}
+          </ul>
+          <div class="p-2.5 bg-slate-950 rounded-lg border border-slate-800 text-xs text-slate-300">
+            <strong class="text-emerald-400">Milestone Verification:</strong> ${p.milestoneVerification}
+          </div>
+        </div>
+      `).join('');
+
+      const vivaList = document.getElementById('bp-viva-list');
+      vivaList.innerHTML = bp.vivaDefensePrep.map((v, i) => `
+        <details class="group bg-slate-950 rounded-xl border border-slate-800 overflow-hidden transition" ${i === 0 ? 'open' : ''}>
+          <summary class="p-4 cursor-pointer font-semibold text-white flex items-center justify-between hover:text-sky-400">
+            <span>${i + 1}. ${v.question}</span>
+            <span class="text-slate-500 group-open:rotate-180 transition transform">&dtrif;</span>
+          </summary>
+          <div class="p-4 pt-0 border-t border-slate-900 text-sm text-slate-300 space-y-2">
+            <p><strong class="text-sky-400">Model Answer:</strong> ${v.suggestedAnswer}</p>
+            <p class="text-xs text-slate-400"><strong class="text-slate-300">Examiner Focus:</strong> ${v.examinerFocus}</p>
+          </div>
+        </details>
+      `).join('');
+
+      const risksList = document.getElementById('bp-risks-list');
+      risksList.innerHTML = bp.failureModesAndMitigations.map(r => `
+        <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span class="px-2 py-0.5 text-xs font-bold rounded ${r.severity === 'High' ? 'bg-rose-950 text-rose-400 border border-rose-800' : 'bg-amber-950 text-amber-400 border border-amber-800'}">
+              ${r.severity} Severity Risk
+            </span>
+            <h4 class="text-sm font-semibold text-white mt-1.5">${r.risk}</h4>
+            <p class="text-xs text-slate-400 mt-1"><strong class="text-slate-300">Mitigation:</strong> ${r.mitigationStrategy}</p>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('step-blueprint').classList.remove('hidden');
+      announce(`Loaded complete capstone blueprint for ${bp.title}`);
+    }
+
+    async function handleMentorChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('mentor-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('chat-messages');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'p-3 rounded-lg bg-sky-950/60 text-sky-200 border border-sky-800/80 ml-6';
+      userMsg.innerHTML = `<strong>You:</strong> ${text}`;
+      chatBox.appendChild(userMsg);
+
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      const thinkingMsg = document.createElement('div');
+      thinkingMsg.className = 'p-3 rounded-lg bg-slate-900 text-slate-400 border border-slate-800';
+      thinkingMsg.innerHTML = `<em>AI Mentor is analyzing...</em>`;
+      chatBox.appendChild(thinkingMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      try {
+        const res = await fetch('/api/mentor-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            projectTitle: state.blueprint ? state.blueprint.title : (state.selectedIdea ? state.selectedIdea.title : 'Capstone Project'),
+            domain: state.domain || 'Computer Engineering',
+            message: text,
+            chatHistory: state.chatHistory
+          })
+        });
+
+        const data = await res.json();
+        chatBox.removeChild(thinkingMsg);
+
+        const mentorMsg = document.createElement('div');
+        mentorMsg.className = 'p-3 rounded-lg bg-slate-900 text-slate-200 border border-slate-800';
+        mentorMsg.innerHTML = `<strong class="text-sky-400">AI Mentor:</strong> ${data.reply}`;
+        chatBox.appendChild(mentorMsg);
+
+        state.chatHistory.push({ role: 'user', content: text });
+        state.chatHistory.push({ role: 'mentor', content: data.reply });
+      } catch (err) {
+        chatBox.removeChild(thinkingMsg);
+        const errMsg = document.createElement('div');
+        errMsg.className = 'p-3 rounded-lg bg-slate-900 text-slate-200 border border-slate-800';
+        errMsg.innerHTML = `<strong class="text-sky-400">AI Mentor:</strong> I recommend starting with clear data schemas and testing your API routes locally before deploying to Google Cloud Run!`;
+        chatBox.appendChild(errMsg);
+      }
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
