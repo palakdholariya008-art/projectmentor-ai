@@ -5,8 +5,8 @@ def get_fallback_ideas(domain: str, skills: List[str]) -> List[ProjectIdea]:
     return [
         ProjectIdea(
             id="idea-fallback-1",
-            title="SmartAudit: Decentralized AI Academic Credential & Skill Verifier",
-            tagline="Tamper-proof degree and skill verification platform with AI OCR anomaly classification.",
+            title="Fake Degree & Certificate Detector (AI Document Verifier)",
+            tagline="Instantly scans uploaded marksheets & certificates using AI to catch forged signatures, altered grades, and fake college seals.",
             problemStatement="Institutions and tech recruiters waste hundreds of hours manually verifying academic certificates and transcripts, risking fake resume submissions and credential forgery.",
             solutionOverview="A zero-trust platform combining cryptographic certificate hashing on an immutable ledger with Google Gemini Multimodal OCR to instantly detect manipulated seals, altered grades, and fraudulent signatures.",
             noveltyUSP="Combines decentralized hash attestation with automated multi-modal vision anomaly grading for instant zero-knowledge employer checks.",
@@ -29,8 +29,8 @@ def get_fallback_ideas(domain: str, skills: List[str]) -> List[ProjectIdea]:
         ),
         ProjectIdea(
             id="idea-fallback-2",
-            title="EduTwin: Adaptive Real-Time AI Socratic Viva Examiner",
-            tagline="Interactive pedagogical mentor conducting simulated voice and text viva examinations with grading analytics.",
+            title="AI Mock Viva Examiner & Voice Interview Coach",
+            tagline="Practice your final-year college viva exam with an AI examiner that asks real technical questions, grades your answers, and points out weak areas.",
             problemStatement="Engineering students frequently suffer high anxiety and poor performance in final-year viva defense sessions due to lack of realistic, personalized mock examination practice.",
             solutionOverview="An intelligent examiner engine that ingests syllabus outcomes and capstone project blueprints to conduct adaptive Socratic cross-examinations, pinpointing conceptual weak spots in real time.",
             noveltyUSP="Dynamic Bloom-Taxonomy difficulty adjustment with real-time scoring rubrics tailored specifically to Indian university examination guidelines.",
@@ -53,8 +53,8 @@ def get_fallback_ideas(domain: str, skills: List[str]) -> List[ProjectIdea]:
         ),
         ProjectIdea(
             id="idea-fallback-3",
-            title="CampusPulse: Edge-IoT and Multi-Variate AI Facility Energy Optimizer",
-            tagline="Predictive power optimization, HVAC load shedding, and predictive maintenance for university campuses.",
+            title="Smart College Electricity & AC Power Saver (IoT + AI)",
+            tagline="Automatically turns off empty classroom lights and ACs using sensors and AI predictions to cut college electricity bills by 30%.",
             problemStatement="Academic institutions waste up to 35% of power annually through unmanaged laboratory air conditioning, auditorium lighting, and idle computing clusters.",
             solutionOverview="A unified edge-IoT telemetry network feeding real-time occupancy and power metrics into a predictive AI model that automates HVAC schedules and detects electrical anomalies.",
             noveltyUSP="Hybrid edge-to-cloud computing pipeline featuring sub-second sensor anomaly classification and Gemini natural language root-cause explanation reports.",

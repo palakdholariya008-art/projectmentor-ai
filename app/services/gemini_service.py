@@ -43,8 +43,10 @@ Student Profile:
 - Academic Preferences: {payload.academicPreferences or "Must have practical real-world utility and sound academic rigor."}
 
 Requirements:
-1. NO generic clone ideas (e.g. basic e-commerce, simple chat, generic to-do apps).
-2. Every idea must address a real-world problem with modern architectures (e.g. edge computing, Gemini AI, cloud services, resilient workflows).
+1. Title must be simple, direct, and immediately understandable to any college student (e.g. "Fake Certificate Detector (AI OCR)" instead of overly complex academic jargon).
+2. Tagline must explain in 1 simple sentence what real-world problem it solves for humans.
+3. NO generic clone ideas (e.g. basic e-commerce, simple chat, generic to-do apps).
+4. Every idea must address a real-world problem with modern architectures (e.g. edge computing, Gemini AI, cloud services, resilient workflows).
 3. The tech stack MUST leverage the student's skills while introducing 1-2 industry-standard modern tools.
 4. Provide realistic timelines and clear novelty USP.
 5. Return strictly valid JSON adhering to the required schema."""
