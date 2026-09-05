@@ -42,3 +42,7 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+__pycache__/
+*.pyc
+.pytest_cache/
